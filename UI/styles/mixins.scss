@@ -1,0 +1,43 @@
+$total:24;  // 栅栏布局24列
+
+// 计算列宽
+@function column-width ($col) {
+  @return percentage($col/$total);
+}
+
+// 自动生成 .z-col-1 ~ .z-col-24 的类的列宽（百分比的形式）
+@for $i from 1 through $total {
+  .z-col-#{$i}{width: column-width($i)}
+}
+
+// 响应式布局媒体查询
+// 768px < 992px < 1200px < 1920px
+// xs      sm      md       lg
+@media only screen and (max-width: 768px) {
+  @for $i from 1 through $total {
+    .z-col-xs-#{$i}{ width: column-width($i) };
+  }
+}
+@media only screen and (min-width: 768px){
+  @for $i from 1 through $total {
+    .z-col-sm-#{$i}{ width: column-width($i) };
+  }
+}
+
+@media only screen and (min-width: 992px){
+  @for $i from 1 through $total {
+    .z-col-md-#{$i}{ width: column-width($i) };
+  }
+}
+
+@media only screen and (min-width: 1200px){
+  @for $i from 1 through $total {
+    .z-col-lg-#{$i}{ width: column-width($i) };
+  }
+}
+
+@media only screen and (min-width: 1920px){
+  @for $i from 1 through $total {
+    .z-col-xl-#{$i}{ width: column-width($i) };
+  }
+}
